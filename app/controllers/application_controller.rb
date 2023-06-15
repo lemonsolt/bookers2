@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  
+  def after_user_session_path_for(resource)
+    user_path(resource)
+  end
 
   protected
 
