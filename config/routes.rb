@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root to: "homes#top"
   devise_for :users
   get 'home/about' => 'homes#about', as: 'about'
+  patch 'users/:id/edit' => 'users#update'
+  resource :my, only: %i(show)
   resources :books, only: [:show,:index,:edit]
   resources :users, only: [:show,:index,:edit]
   
