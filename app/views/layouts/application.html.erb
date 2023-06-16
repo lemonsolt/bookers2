@@ -22,7 +22,7 @@
           <div class="collapse navbar-collapse" >
             <ul class="nav-bar-nav ml-auto list-unstyled list-inline text-white">
               <li class="nav-item list-inline-item">
-                <%= link_to users_path, class: 'nav-link  text-white ' do %>
+                <%= link_to user_path(current_user.id), class: 'nav-link  text-white ' do %>
                  <i class="fas fa-home"></i> Home
                 <% end %>
               </li>
