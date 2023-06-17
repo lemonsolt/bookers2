@@ -1,6 +1,8 @@
 <div class="col-lg-4">
   <h2>User info</h2>
-    <%= image_tag 'no_image', size: "100x100"%>
+    <div class="w-75 mx-auto">
+     <%= image_tag current_user.get_profile_image(100,100) %>
+    </div>
     <table class="table w-75 mx-auto">
     <thead>
       <tr>
@@ -8,12 +10,12 @@
         <th><%= current_user.name %></th>
       </tr>
       <tr>
-        <th>Introduction</th>
-         <th class="table-borderless"><%= current_user.introduction %></th>
+        <td>Introduction</td>
+         <td class="table-borderless"><%= current_user.introduction %></td>
       </tr>
     </thead>
   </table>
-    <%= link_to edit_user_path((current_user.id)) , class: 'btn btn-outline-dark w-100 mb-3' do %><i class="fas fa-user-cog "></i><% end %>
+    <%= link_to edit_user_path(current_user.id) , class: 'btn btn-outline-dark w-100 mb-3' do %><i class="fas fa-user-cog "></i><% end %>
     <div class="w-75 mx-auto">
     <%= form_with model: book do |f| %>
     <h1>New book</h1>

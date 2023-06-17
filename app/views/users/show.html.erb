@@ -1,4 +1,7 @@
 <main>
+  <div>
+    <%= flash[:notice] %>
+  </div>
   <% if @book.errors.any? %>
   <%= @book.errors.count %>errors prohibited this obj from being saved:
   <ul>
@@ -10,8 +13,10 @@
   <div class="container">
     <div class="row mt-3">
       <div class="col-lg-4">
-        <h2>User info</h2>
-        <%= image_tag 'no_image', size: "100x100"%>
+        <h2 class="w-75 mx-auto">User info</h2>
+        <div class="w-75 mx-auto">
+         <%= image_tag @user.get_profile_image(100,100) %>
+        </div>
         <table class="table w-75 mx-auto">
           <thead>
             <tr>
@@ -19,8 +24,8 @@
               <th><%= @user.name %></th>
             </tr>
             <tr>
-              <th>Introduction</th>
-              <th class="table-borderless"><%= @user.introduction %></th>
+              <td>Introduction</td>
+              <td class="table-borderless"><%= @user.introduction %></td>
             </tr>
           </thead>
         </table>
@@ -32,7 +37,7 @@
           <%= f.text_field :title , class: "w-100 mb-3" %>
           <label>Opinion</label>
           <%= f.text_area :body , class: "w-100 mb-3" %>
-          <%= f.submit "Create Book", class: 'btn btn-success rounded text-white'%>
+          <%= f.submit "Create Book",class: 'btn btn-success rounded text-white'%>
           <% end %>
         </div>
       </div>
@@ -41,16 +46,23 @@
         <table class="table table-striped">
           <thead>
             <tr>
+              <th></th>
               <th class="book-title">Title</th>
               <th class="book-body">Opinion</th>
             </tr>
           </thead>
           <tbody>
-            <% @books.each do |book| %>
+            <% @book_list.each do |book| %>
               <tr>
-
-                <td><span><%= book.title %></span></td>
-                <td><span><%= book.opinion %></span></td>
+                <td class="col-lg-1">
+                  <%= image_tag book.user.get_profile_image(80,80) %>
+                </td>
+                <td class="col-lg-2">
+                  <%= link_to book_path(book) do %>
+                  <span><%= book.title %></span>
+                  <% end %></td>
+                </td>
+                <td class="col-lg-5"><span><%= book.body %></span></td>
               </tr>
             <% end %>
           </tbody>

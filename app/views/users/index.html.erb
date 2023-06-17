@@ -1,5 +1,7 @@
 <main>
-
+  <div>
+    <%= flash[:notice] %>
+  </div>
   <div class="container">
     <div class="row mt-3">
         <%= render 'profile', user: @user ,book: @book %>
@@ -16,9 +18,15 @@
           <tbody>
             <% @users.each do |user| %>
               <tr>
-                <td></td>
-                <td><span><%= user.name %></span></td>
-                <td><span><%= link_to user_path(user.id) do %>show<% end %></span></td>
+                <td class="col-lg-2">
+                  <% if user.profile_image.attached? %>
+                    <%= image_tag user.profile_image, size: "80x80" %>
+                  <% else %>
+                    <%= image_tag 'no_image', size: "80x80" %>
+                  <% end %>
+                </td>
+                <td class="col-lg-4"><span><%= user.name %></span></td>
+                <td class="col-lg-2"><span><%= link_to user_path(user.id) do %>show<% end %></span></td>
               </tr>
             <% end %>
           </tbody>

@@ -33,7 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.datetime :locked_at
 
       # 名前保存
-            t.string :name
+      t.string :name
       t.text :introduction
 
 

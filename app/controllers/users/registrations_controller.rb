@@ -31,7 +31,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    notice_slack("Signed in successfully.")
+    flash[:notice] = "Signed in successfully."
+    
   end
 
 
