@@ -1,7 +1,4 @@
 <main>
-  <div>
-    <%= flash[:notice] %>
-  </div>
   <div class="container">
     <div class="row mt-3">
         <%= render 'profile', book: @book %>
@@ -19,7 +16,9 @@
             <% @books.each do |book| %>
               <tr>
                 <td>
-                  <%= image_tag book.user.get_profile_image(80,80) %>
+                  <% link_to user_path(book.user.id) do %>
+                    <%= image_tag book.user.get_profile_image(80,80) %>
+                  <% end %>
                 </td>
                 <td>
                   <%= link_to book_path(book) do %>

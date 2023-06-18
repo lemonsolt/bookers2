@@ -5,10 +5,8 @@ class BooksController < ApplicationController
   end
 
   def create
-    @user = current_user
-    @book = Book.new(book_params)
-    @book.user_id = current_user.id
-    if @book.save
+    @book = Book.new
+    if @book.save(book_params)
       flash[:notice] = "You have created book successfully."
       redirect_to user_path(current_user.id)
     else
@@ -51,6 +49,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:user_id,:title,:body,)
+    params.require(:book).permit(:title,:body)
   end
 end

@@ -1,7 +1,4 @@
 <main>
-  <div>
-    <%= flash[:notice] %>
-  </div>
   <% if @book.errors.any? %>
   <%= @book.errors.count %>errors prohibited this obj from being saved:
   <ul>
@@ -55,7 +52,9 @@
             <% @book_list.each do |book| %>
               <tr>
                 <td class="col-lg-1">
+                  <% link_to user_path(@book.user.id) do %>
                   <%= image_tag book.user.get_profile_image(80,80) %>
+                  <% end %>
                 </td>
                 <td class="col-lg-2">
                   <%= link_to book_path(book) do %>

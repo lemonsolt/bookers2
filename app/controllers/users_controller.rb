@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @book.save
       redirect_to user_path(current_user.id)
     else
-      render :show
+      render '/books'
     end
   end
 
