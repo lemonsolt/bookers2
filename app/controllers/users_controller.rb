@@ -19,9 +19,14 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @book = Book.new
   end
 
   def edit
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to user_path(current_user.id)
+    end
     @user = User.find(current_user.id)
 
   end
@@ -43,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:name,:body)
+    params.require(:book).permit(:title,:body)
   end
 
   def is_matching_login_user
